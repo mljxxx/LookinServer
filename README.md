@@ -51,6 +51,22 @@ Lookin 可以查看与修改 iOS App 里的 UI 对象，类似于 Xcode 自带�
 ## 通过 Swift Package Manager:
 `https://github.com/QMUI/LookinServer/`
 
+## 通过 optool
+### 构建
+> **注意**
+Release中有已构建好的LookinServer.framework，可直接注入
+
+在LookinServer/LookinDemo/OC_Pod目录下执行pod install,之后打开LookinDemoOC.xcworkspace,在Signing & Capabilities配置签名，最后执行以下命令：
+```
+xcodebuild build -workspace LookinDemoOC.xcworkspace -scheme LookinDemoOC -destination 'generic/platform=iOS' -sdk iphoneos -configuration Release -derivedDataPath DerivedData
+```
+LookinServer.framework在DerivedData/Build/Products/Release-iphoneos/LookinServer下，
+### 注入
+将LookinServer.framework其拷贝到Target.app/Frameworks/下，之后使用optool注入
+```
+optool install -c load -p "@executable_path/Frameworks/LookinServer.framework/LookinServer" -t "${MachO File Path}"
+```
+
 # 源代码仓库
 
 iOS 端 LookinServer：https://github.com/QMUI/LookinServer
@@ -61,6 +77,3 @@ macOS 端软件：https://github.com/hughkli/Lookin/
 - 如何在 Lookin 中展示自定义信息: https://bytedance.larkoffice.com/docx/TRridRXeUoErMTxs94bcnGchnlb
 - 如何在 Lookin 中展示更多成员变量: https://bytedance.larkoffice.com/docx/CKRndHqdeoub11xSqUZcMlFhnWe
 - 如何为 Lookin 开启 Swift 优化: https://bytedance.larkoffice.com/docx/GFRLdzpeKoakeyxvwgCcZ5XdnTb
-
-# 工作机会
-如果你也是 iOS/Android 客户端开发，并且有换工作的意向，那么诚挚邀请你加入我的部门：https://bytedance.feishu.cn/docx/SAcgdoQuAouyXAxAqy8cmrT2n4b
