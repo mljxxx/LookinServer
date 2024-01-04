@@ -55,9 +55,9 @@ Lookin 可以查看与修改 iOS App 里的 UI 对象，类似于 Xcode 自带�
 ### 构建
 > **注意**
 Release中有已构建好的LookinServer.framework，可直接注入
-
-在LookinServer/LookinDemo/OC_Pod目录下执行pod install,之后打开LookinDemoOC.xcworkspace,在Signing & Capabilities配置签名，最后执行以下命令：
 ```
+cd LookinServer/LookinDemo/OC_Pod
+pod install
 xcodebuild build -workspace LookinDemoOC.xcworkspace -scheme LookinDemoOC -destination 'generic/platform=iOS' -sdk iphoneos -configuration Release -derivedDataPath DerivedData
 ```
 LookinServer.framework在DerivedData/Build/Products/Release-iphoneos/LookinServer下，
